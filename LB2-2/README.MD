@@ -81,7 +81,7 @@ SSH Key auf GITHUB zeigen (Profile/Settings/SSH)
 ## Vagrantfile
 Das Vagrantfile dient der Konfiguration der VM, bevor man sie das erste Mal aufstartet.
 
-![Vagrantfile](lb2_screenshots/vagrantfile.PNG)
+![Vagrantfile](lb2_screenshots/vagrantfile.png)
 
 ## Neuer Sudo User erstellen
 Um das Usererstellen auszuprobieren habe ich einen neue Sudo User erstellt. Dies ging ganz einfach mit dem Kommando `sudo adduser m300admin`. "m300admin" ist dabei der Username. Anschliessend wird man noch nach einem Passwort gefragt. Dabei habe ich wieder dasselbe verwendet wie immer.
