@@ -115,7 +115,7 @@ mySQL Service ist auch betriebsbereit
 Webserver/Apacheserver ist betriebsbereit
 
 
-![docker-compose.yml](lb3_screenshots/dockercomposeyaml.PNG)
+![docker-compose.yml](lb3_screenshots/phpstandardseite.PNG)
 
 ### cAdvisor
 cAdvisor ist auch aufrufbar
