@@ -82,7 +82,7 @@ Anschliessend müssen wir noch eins, zwei Verzeichnisse erstellen in denen wir u
 ## Konfiguration der docker-compose Datei
 In dieser Datei setzen wir nun alle Komnfigurationen fest die wir haben wollen. Am ende sieht diese datei so aus (Achtung! Da diese Datei die YAML Syntax nutzt, muss man auf Zeilenumbrüche und Einschläge besonders acht geben!):
 
-![docker-compose.yml](lb3_screenshots/dockercomposeyaml.PNG)
+![docker-compose.yml](lb3_screenshots/dockercomposeyaml2.PNG)
 
 In der ersten Zeile geben wir die Version der docker-compose syntax an. Anschliessend definieren wir alle unsere Services unter `services:`. 
 
