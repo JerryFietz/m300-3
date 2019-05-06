@@ -1,9 +1,42 @@
-#Persönlicher Wissensstand
+# Technische Berufsschule Zürich Modul 300 Leitsungsbeurteilung 3
 
-##Microservicess
+1. Persönlicher Wissensstand
+   1. Microservice
+   2. Containerisierung
+   3. Docker
+      1. Dockerfile
+2. Multi Service Container Stack mit Docker-Compose
+   1. Vorbereitungen Docker Install
+   2. Vorbereitungen Docker Compose Install
+   3. Verschiedene Services
+      1. PiHole
+      2. PHPmyAdmin
+      3. mySQL
+      4. Apache Server
+      5. CadVisor
+   4. Der letzte Schritt
+   5. Sicherheitsmassnahmen
+      1. Überwachung
+      2. Sicherheitsmassnahmen
+         1. Massnahme 1
+         2. Massnahme 2
+         3. Massnahme 3
+3. Tests
+    1. Testfall 1
+    2. Testfall 2
+    3. Testfall 3
+4. Vergleich Vorwissen und Wissenszuwachs
+   1. Vorwissen
+   2. Wissenszuwachs
+5.  Reflexion
+
+
+# Persönlicher Wissensstand
+
+## Microservicess
 JJAjeifhkljsehfkajsehfjklashdflkjahsdklfjhasdkjfhakjl
 
-##Containerisierung
+## Containerisierung
 JJAjeifhkljsehfkajsehfjklashdflkjahsdklfjhasdkjfhakjl
 
 ## Docker
@@ -18,22 +51,29 @@ Um Später mit dem eigentlichen Aufsetzen des Containers beginnen zu können mü
 
 First, in order to ensure the downloads are valid, add the GPG key for the official Docker repository to your system:
 `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+
 Add the Docker repository to APT sources:
 `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
+
 Next, update the package database with the Docker packages from the newly added repo:
 `sudo apt-get update`
+
 Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
 `apt-cache policy docker-ce`
+
 Finally, install Docker:
 `sudo apt-get install -y docker-ce`
+
 Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
 `sudo systemctl status docker`
 
 ## Vorbereitungen Docker Compose Install
 Curl installieren
 `sudo apt-get install curl`
+
 Run this command to download the current stable release of Docker Compose:
 `sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+
 Apply executable permissions to the binary:
 `sudo chmod +x /usr/local/bin/docker-compose`.
 
@@ -53,13 +93,6 @@ Im nächsten Abschnitt beschreiben wir unseren Datenbank container. Dabei wird z
 
 Und zum Schluss müssen noch ein sogenanntes "named volume" erstellen. Dies tun wir mit der Option `volumes:` ganz am Ende der Datei. 
 
-## Erstellen des Dockerfiles
-Nun brauchen wir noch Dockerfile um später auch die Container richtig aufbauen zu können. Wir erstellen nochmals ein neues Verzeichnis in /docker namens php-apache `mkdir php-apache`. Und darin kommt dann das Dockerfile. `touch Dockerfile`. Da wir aber schon einige Konfigurationen im docker-compose.yml angegeben haben wird diese Datei etwas kürzer.
-
-![Dockerfile](lb3_screenshots/dockerfile.PNG)
-
-Daring geben wir an welches Image wir nutzen, in unserem Fall ist das php:7.2.1-apache. Und anschliessend geben wir noch an, welche Erweiterungen wir dazu haben wollen.
-
 ## Der letzte Schritt
 Nun, da wir alle Konfigurationen gemacht haben, können wir die Container starten. `docker-compose up`. Dabei darauf achten, dass wir im gleichen Verzeichnis sind, wie die docker-compose.yml Datei.
 
@@ -72,6 +105,12 @@ Wenn alles korrekt läuft, sehen wir nun folgende Seite, wenn wir im Browser auf
 Nachdem die Container aufgestartet wurden, wird alles was auf dem Server passiert live überwacht. 
 
 ![Überwachung](lb3_screenshots/überwachung.PNG)
+
+###  Sicherheitsmassnahme
+
+#### Massnahme 1
+#### Massnahme 2
+#### Massnahme 3
 
 ## Tests
 ### Testfall 1
