@@ -2,21 +2,11 @@
 <html>
 <body>
 
+ 
+<p>PHP Webserver Test</p>
 <?php
-$servername = "localhost";
-$username = "dbuser";
-$password = "1234";
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-echo "Connected successfully";
+phpinfo();
 ?>
-
-
-<p>The webserver too!! (duh)</p>
 
 </body>
 </html>
