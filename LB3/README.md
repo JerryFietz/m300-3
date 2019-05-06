@@ -194,6 +194,11 @@ Images werden nur von Docker Hub und Dockerverifizierte Sites geladen. Somit ist
 #### Massnahme 3: Benachrichtigungen
 Mit Überwachungssoftware können überlastungen und anderes unnatürliches verhalten verhindert werden.
 
+## Visualisation der Infrastruktur
+Nachdem die Container gestartet sind, kann man sich die Infrastrukur wie im Bild weiter unten vorstellen.
+
+![Infrastruktur](lb3_screenshots/netzdiagramm.PNG)
+
 
 ## Tests
 ### Testfall 1
