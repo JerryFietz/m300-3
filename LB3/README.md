@@ -98,15 +98,53 @@ Hier sind die verschiedenen Services aufgelistet welche nun in Container laufen.
 ### PiHole
 Der Pi Hole Service ist nicht funktionsfähig
 
+##### Container Pihole
+Dieser Container beinhaltet die Applikation Pihole, welcher als lokaler DNS Server dient. 
+
+| <tab>             | <tab>                                                       |
+| ----------------- | ----------------------------------------------------------- |
+| **Configuration** | Value                                                       |
+| Container Name    | pihole                                                      |
+| Image             | pihole/pihole:latest                                        |
+| Ports             | 53:53/tcp , 53:53/udp , 67:67/udp , 80:80/tcp , 443:443/tcp |
+| Volumes           | -                                                           |
+| DNS               | 127.0.0.1, 1.1.1.1                                          |
+
 ![docker-compose.yml](lb3_screenshots/pihole.PNG)
 
 ### PHPmyAdmin
 Der PHPmyAdmin service ist funktionstüchtig
 
+##### Container phpmyadmin
+Dieser Container beinhaltet PHP MyAdmin, welche auf den Contaienr db_mysql verlinkt ist. 
+
+| <tab>             | <tab>                  |
+| ----------------- | ---------------------- |
+| **Configuration** | Value                  |
+| container_name    | phpmyadmin             |
+| Image             | phpmyadmin/phpmyadmin. |
+| Ports             | 8080:80                |
+| Volumes           | -                      |
+
 ![docker-compose.yml](lb3_screenshots/phpmyadmin.PNG)
 
 ### mySQL
 mySQL Service ist auch betriebsbereit
+
+##### Container DB
+Dieser Container beinhaltet eine MySQL Datenbank
+
+| <tab>               | <tab>     |
+| ------------------- | --------- |
+| **Configuration**   | Value     |
+| Container Name      | db_mysql  |
+| Image               | mysql:5.7 |
+| Ports               | 9906:3306 |
+| Volumes             | -         |
+| MYSQL_ROOT_PASSWORD | 1234      |
+| MYSQL_DATABASE      | dbteset   |
+| MYSQL_USER          | dbuser    |
+| MYSQL_PASSWORD      | 1234      |
 
 
 ![docker-compose.yml](lb3_screenshots/mysqlservice.PNG)
@@ -114,11 +152,33 @@ mySQL Service ist auch betriebsbereit
 ### Apache Server
 Webserver/Apacheserver ist betriebsbereit
 
+##### Container Web
+Dieser Container beinhaltet einen Apache2 Webserver
+
+| <tab>             | <tab>                 |
+| ----------------- | --------------------- |
+| **Configuration** | Value                 |
+| container_name    | php_web               |
+| Image             | php:7.2.2-apache      |
+| Ports             | 8100:80               |
+| Volumes           | ./php/:/var/www/html/ |
+
 
 ![docker-compose.yml](lb3_screenshots/phpstandardseite.PNG)
 
 ### cAdvisor
 cAdvisor ist auch aufrufbar
+
+##### Container cadvisor
+Dieser Container beinhaltet das Überwachungstool Cadvisor. 
+
+| <tab>             | <tab>                                                                                      |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| **Configuration** | Value                                                                                      |
+| container_name    | cadvisor                                                                                   |
+| Image             | google/cadvisor:v0.29.0                                                                    |
+| Ports             | 8888:8080                                                                                  |
+| Volumes           | /:/rootfs:ro ,/var/run:/var/run:rw ,  /sys:/sys:ro , /var/lib/docker/:/var , lib/docker:ro |
 
 ![docker-compose.yml](lb3_screenshots/cAdvisor.PNG)
 
