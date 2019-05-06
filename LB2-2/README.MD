@@ -56,22 +56,7 @@ free -m| #Freier Arbeitsspeicher
 ## Vagrantfile
 Das Vagrantfile dient der Konfiguration der VM, bevor man sie das erste Mal aufstartet.
 
-![Vagrantfile](lb2_screenshots/vagrantfile.PNG)
-
-## Neuer Sudo User erstellen
-Um das Usererstellen auszuprobieren habe ich einen neue Sudo User erstellt. Dies ging ganz einfach mit dem Kommando `sudo adduser m300admin`. "m300admin" ist dabei der Username. Anschliessend wird man noch nach einem Passwort gefragt. Dabei habe ich wieder dasselbe verwendet wie immer.
-
-![NeuerSudoUser1](lb2_screenshots/usererstellen1.PNG)
-
-Anschliessend benötigt der neue erstellte User noch die Berechtigungen um die Rolle als SuperUser zu erfüllen. Dies gint mit dem Kommando `sudo usermod -aG sudo testuser`
-
-![NeuerSudoUser2](lb2_screenshots/usererstellen2.PNG)
-
-### Sudo User testen
-
-Um zu überprüfen, dass der neu erstellte User auch die richtigen Berechtigunen hat, habe ich mich auf ihm eingeloggt. Ganz einfach mit dem Befehl `su - testuser`. Und dann auf dem neuen Benutzer ein Befehl mit `sudo` ausgeführt. In diesem Fall habe ich die nummerierte Firewall-Regel Tabelle abgerufen. Weiter unten (im Bild) sieht man, dass der Befehl ohne `sudo` nicht funktioniert.
-
-![NeuerSudoUserTest](lb2_screenshots/usertesten.PNG)
+![Vagrantfile](lb2_screenshots/vagrantfile2.PNG)
 
 ## Firewall Regeln
 
@@ -84,9 +69,6 @@ Ich habe mich für folgende Firewall Regeln entschieden. Diese hatten keinen bes
 Mit folgendem Befehl habe ich einen SSH Key erstellt um den abgesicherten SSH Zugriff zu sichern.
 
 ![SSHkeygen](lb2_screenshots/newsshkey.PNG)
-
-
-
 
 # Docker VM vorbereitung Installation mit Vagrant
 ## Vagrantfile

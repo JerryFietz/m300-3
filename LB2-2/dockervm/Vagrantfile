@@ -28,7 +28,17 @@ Vagrant.configure("2") do |config|
 	sudo a2enmod proxy
 	sudo a2enmod proxy_html
 	sudo a2enmod proxy_http
-	sudo service apache2 restart
+  sudo service apache2 restart
+  
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
+  sudo apt-get update
+  apt-cache policy docker-ce
+  sudo apt-get install -y docker-ce
+  sudo systemctl status docker
+  sudo apt-get install curl
+  udo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
 	
 	sudo groupadd users
 		sudo useradd test -g admin -m -s /bin/bash
