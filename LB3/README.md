@@ -13,8 +13,7 @@
       3. mySQL
       4. Apache Server
       5. CadVisor
-   4. Der letzte Schritt
-   5. Sicherheitsmassnahmen
+   4. Sicherheitsmassnahmen
       1. Überwachung
       2. Sicherheitsmassnahmen
          1. Massnahme 1
@@ -210,35 +209,41 @@ Mit Überwachungssoftware können überlastungen und anderes unnatürliches verh
 ### Testfall 1
 __Titel:__ Start der Container
 
-__Datum:__ 3.5.19
+__Datum:__ 6.5.19
 
 __Beschreibung:__ Die Container werden gestartet.
 
-__Erwartetes Ergebnis:__ Die Erwartung ist, dass verschiedene Container erstellt werden.
+__Erwartetes Ergebnis:__ Die Erwartung ist, dass verschiedene Container erstellt werden und nachher aufrufbar sind.
 
-__Eigenliches Ergebnis:__ Es sind zwei verschiedene Container erstellt worden. Einer mit dem Namen "docker_mariadb_1" und einer namens "docker_php-apache_1".
+__Eigenliches Ergebnis:__ Bis auf den pihole container können alle Container Starten.
+
+![docker-compose.yml](lb3_screenshots/pihole.PNG)
 
 ### Testfall 2
-__Titel:__ PHP Index Seite
+__Titel:__ Stop der Container
 
-__Datum:__ 3.5.19
+__Datum:__ 6.5.19
 
-__Beschreibung:__ Verbindung auf Server via Browser.
+__Beschreibung:__ Stoppen der Container.
 
-__Erwartetes Ergebnis:__ Erfolgreiches Erreichen der Seite des Servers. Es sollte die PHP Index Seite angezeigt werden.
+__Erwartetes Ergebnis:__ Container werden gestoppt und können nacher wieder Gestartet werden.
 
-__Eigenliches Ergebnis:__ Erfolgreich auf die Seite gekommen. Bei verändern der index.php Datei hat sich auch direkt die Seit im Browser verändert.
+__Eigenliches Ergebnis:__ Container werden erfolgreich gestoppt. (Ausgenommen der pihole container, welcher nicht starten kann)
+
+![docker-compose.yml](lb3_screenshots/test2stop.PNG)
 
 ### Testfall 3
-__Titel:__ Überwachung
+__Titel:__ Funktionalität
 
-__Datum:__ 3.5.19
+__Datum:__ 6.5.19
 
-__Beschreibung:__ Verbindung auf Server via Browser und Überprüfung der Überwachung.
+__Beschreibung:__ Container Services können via Browser erreicht werden.
 
-__Erwartetes Ergebnis:__ Eintrag in der Konsole, dass um diese Zeit ein Benutzer diese Seite aufgerufen hat. Mit dem Browser Google Chrome auf Windows.
+__Erwartetes Ergebnis:__ Alle Services sind via Browser erreichbar.
 
-__Eigenliches Ergebnis:__ Test war erfolgreich. Folgende Zeile wurde in der Konsole ausgegeben. `php-apache_1  | 212.203.120.1 - - [03/May/2019:11:02:45 +0000] "GET / HTTP/1.1" 200 23807 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"`.
+__Eigenliches Ergebnis:__ Alle Containerservices sind erreichbar. Ausgenommen pihole
+
+![docker-compose.yml](lb3_screenshots/test3funk.PNG)
 
 # Vergleich Vorwissen und Wissenszuwachs
 ## Vorwissen
