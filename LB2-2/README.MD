@@ -1,39 +1,47 @@
+# Technische Berufsschule Zürich Modul 300 Leitsungsbeurteilung 2
+
+1. Persönlicher Wissensstand
+   1. Linux
+   2. Virtualisierung
+   3. Vagrant
+   4. Git
+2. Docker VM vorbereitung Installation mit Vagrant
+   1. Vorbereitungen Docker Install
+   2. Vorbereitungen Docker Compose Install
+   3. Vagrant Box Release
+3. Sicherheitsmassnahmen
+     1. Massnahme 1
+     2. Massnahme 2
+     3. Massnahme 3
+4. Tests
+    1. Testfall 1
+    2. Testfall 2
+    3. Testfall 3
+5. Vergleich Vorwissen und Wissenszuwachs
+   1. Vorwissen
+   2. Wissenszuwachs
+6.  Reflexion
+
+
+# Persönlicher Wissensstand
+Persönlicher Wissenstand zu LB3
+
+## Linux
+Microservices sind ein Weg, Softwaresysteme so zu entwickeln und zu kombinieren, dass sie aus kleinen, unabhängigen Komponenten bestehen, die untereinander über das Netz interagieren. Das steht im Gegensatz zum klassischen, monolithischen Weg der Softwareentwicklung, bei dem es ein einzelnes, grosses Programm gibt.
+
+## Virtualisierung
+Entwickler können Software lokal bauen, die woanders genauso laufen wird – sei es ein Rack in der IT-Abteilung, der Laptop eines Anwenders oder ein Cluster in der Cloud.
+
+Administratoren können sich auf die Netzwerke, Ressourcen und die Uptime konzentrieren und müssen weniger Zeit mit dem Konfigurieren von Umgebungen und dem Kampf mit Systemabhängigkeiten verbringen.
+
+## Vagrant
+Docker ist ein Programm, das für die Containerisierung genutzt wird. Wenn man das Docker paket herunterlädt bekommt man man einige Features mitinstalliert die man ebenfalls nutzen kann. Docker liefert ein ganzes Set an neuen Kommandos die man sowohl auf der Kommandozeile als auch in Skripts und im Dockerfile nutzen kann. Es hat sehr viele Ähnlichkeiten zu Vagrant. Der grosse unterschied ist nur, dass Vagrant zur Virtualisierung genutzt wird.
+
+## Git
+Docker ist ein Programm, das für die Containerisierung genutzt wird. Wenn man das Docker paket herunterlädt bekommt man man einige Features mitinstalliert die man ebenfalls nutzen kann. Docker liefert ein ganzes Set an neuen Kommandos die man sowohl auf der Kommandozeile als auch in Skripts und im Dockerfile nutzen kann. Es hat sehr viele Ähnlichkeiten zu Vagrant. Der grosse unterschied ist nur, dass Vagrant zur Virtualisierung genutzt wird.
+
+
 -------------------
-### Umgebung auf Notebook
-Bewertungskriterien 1
-
-#### Virtual Box
-Virtual Box VM Applikation zeigen
-
-#### Vagrant
-Vagrant VM Starten ("vagrant up" in directory)
-
-#### Visual Studio Code
-VBS Zeigen
-
-#### SSH Key Github
-SSH Key auf GITHUB zeigen (Profile/Settings/SSH)
-
-### Eigne Lernumgebung (PLE) ist eingerichtet
-Bewertungskriterien 1
-
-#### Github account
-Github account zeigen
-
-#### GIT Zeigen
-GitHub struktur Zeigen
-
-#### Dokumentation Zeigen
-Doku in browser zeigen
-
-#### Markdown Dokumentation Zeigen in VBS
-Doku in VBS Zeigen
-
-### VAGRANT
-Bewertungskriterien 1
-
-#### Vagrant Befehle auflisten
-Vagrant Befehle Aufgelistet
 
 <tab>    | <tab>
 --------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -46,38 +54,7 @@ ls -l /bin| #Bin-Verzeichnis anzeigen
 df -hdf -h| #Freier Festplattenspeicher
 free -m| #Freier Arbeitsspeicher
 
-#### Testing fälle zeigen
-Kapitel Testfälle
-
-#### Vagrant Cloud
-Vagrant Cloud VM zeigen
-
-#### Vorgefertigte VM
-SSH Key auf GITHUB zeigen (Profile/Settings/SSH)
-
-# Modul 300 Dokumentation
-## Inhaltsverzeichnis
-
-1. Login
-2. Web-Server Installation mit Vagrant
-   1. Vagrantfile
-   2. Neuer Sudo User erstellen
-      1. Sudo User Testen
-   3. Firewall Regeln
-   4. SSH Key erstellen
-   5. MySQL, PhP und PhPMyAdmin Installation
-3. Vagrant Box Release
-1. Tests
-    1. Testfall 1
-    2. Testfall 2
-    3. Testfall 3
-4. Vergleich Vorwissen und Wissenszuwachs
-   1. Vorwissen
-   2. Wissenszuwachs
-5.  Reflexion
-
-
-# Web-Server Installation mit Vagrant
+# Docker VM vorbereitung Installation mit Vagrant
 ## Vagrantfile
 Das Vagrantfile dient der Konfiguration der VM, bevor man sie das erste Mal aufstartet.
 
@@ -139,6 +116,21 @@ Anschliessend muss man sich bei https://vagrantcloud.com anmelden und den Button
 
 ![VagrantBoxRelease](lb2_screenshots/vagrantcloudrelease.PNG)
 
+## Sicherheitsmassnahmen
+###  Überwachung
+Software wie "Rancher" kann genutzt werden im die Container zu überwachen und Meldungen zu erzeugen.
+
+### Sicherheitsaspekte & Sicherheitsmassnahme
+
+#### Massnahme 1: Kernel Exploits
+Um Kernel exploits zu verhindern wurden die zugewiesenen System Ressourcen festgelegt.
+
+#### Massnahme 2: Vergiftete Images
+Images werden nur von Docker Hub und Dockerverifizierte Sites geladen. Somit ist vereringert das Images Viren und weiteres beinhalten.
+
+#### Massnahme 3: Benachrichtigungen
+Mit Überwachungssoftware können überlastungen und anderes unnatürliches verhalten verhindert werden.
+
 ## Tests
 ### Testfall 1
 __Titel:__ Start der Container
@@ -173,22 +165,19 @@ __Erwartetes Ergebnis:__ Eintrag in der Konsole, dass um diese Zeit ein Benutzer
 
 __Eigenliches Ergebnis:__ Test war erfolgreich. Folgende Zeile wurde in der Konsole ausgegeben. `php-apache_1  | 212.203.120.1 - - [03/May/2019:11:02:45 +0000] "GET / HTTP/1.1" 200 23807 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"`.
 
-# Vergleich Vorwissen und Wissenszuwachs
+# Vergleich Vorwissen und Wissenszuwachs & Reflexion
 ## Vorwissen
-Vor dem Modul hatte ich gerade Mal eine grundlegende Anhung was Virtualisierung anbelangt. Ich wusste wie man Virtuelle Maschinen aufbaut, was Cloud Services sind und ein wenig über Containerisierung.
-
-Jedoch hatte ich noch nie von Vagrant oder Docker gehört, deshalb war alles, was die Konfiguartion angeht neu für mich.
+Mein Vorwissen zum Containerisierung war minimal. Aus geschäftsevents kurz angehaucht. Jedoch spielte ich schon längeren damit zuhause mal damit zu spielen.
 
 ## Wissenszuwachs
-Ich konnte in diesem Projekt Vagrant sehr gut kennenlernen, und damit arbeiten. Ich hätte jedoch nicht so viel Zeit damit verschwenden sollen, da ich am Ende nicht mehr viel Zeit für die LB3 hatte. 
+Ich konnte mit der Gitumgebung und den unterlagen gut mich an Containerisierung herantasten. Vagrant, Docker und vorallem das arbeiten mit Git ist mir sehr nützlich geworden. Das File managment mit git werde ich sicherlich weiterhin bei Projekten verwenden.
 
 In der LB3 konnte ich mein Wissen in Docker sehr erweitern, da dies ebenfalls Neuland für mich war.
 
-# Reflexion
-Da ich persönlich noch nie mit Vagrant oder Docker gearbeitet habe, war alles neu für mich. Dass die einzelnen Arbeitsschritte grösstenteils bereits Dokumentiert waren, hat mir sehr geholfen.
+## Reflexion
+In der LB3 konnte ich sehr viel lernen. So lernte ich die Funktionsweise von Docker und Docker-Compose. Ebenfalls lernte ich, wie mein ein docker-compose.yml file erstellt und definiert. Die Verknüpfungen von einzelnen Containern sowie auch das Angeben von Volumes war mir völlig neu. 
 
-Womit ich jedoch schwierigkeiten hatte, war der Auftrag selbst. Mir, und warscheinlich auch anderen aus meiner Klasse, war nicht klar was am Ende dieser LBs das Ziel war. 
+### Reflexion Modul
+Ich habe sehr viel im Modul gelernt. Jedoch konnte ich aus persönlichen gründen nicht so viel Effizienz aufwenden um mich ganz mit dem Modul zu beschäftigen. Ich war in den Stunden unproduktiv und kam nicht voran. Vorallem hatte ich grosse Probleme mit Git und dem bereitgestellten netzwerk welche mich negativ beeinflussten.
 
-Weiter stand ich lange an der Konfiguration bzw. Automatisierung der VMs an. Ich verstand anfangs nicht wie, wo und was.
-
-Schlussendlich fand ich dieses Projekt sehr Interessant und ich habe sehr viel neues dazugelernt und ich konnte meine Fähigkeiten in Linux wieder einmal auffrischen.
+Ich hätte besseres Leisten können und erwartete auch mehr als ich geleistet habe. Jedoch führte das Modul dazu, dass ich vielleicht auch meine Individuelle praktische arbeit mit containerisierung machen werde.
