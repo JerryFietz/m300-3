@@ -24,7 +24,7 @@
 
 
 # Persönlicher Wissensstand
-Persönlicher Wissenstand zu LB3
+Persönlicher Wissenstand zu LB2
 
 ## Linux
 Microservices sind ein Weg, Softwaresysteme so zu entwickeln und zu kombinieren, dass sie aus kleinen, unabhängigen Komponenten bestehen, die untereinander über das Netz interagieren. Das steht im Gegensatz zum klassischen, monolithischen Weg der Softwareentwicklung, bei dem es ein einzelnes, grosses Programm gibt.
@@ -60,53 +60,43 @@ Das Vagrantfile dient der Konfiguration der VM, bevor man sie das erste Mal aufs
 
 ![Vagrantfile](lb2_screenshots/vagrantfile.png)
 
-## Neuer Sudo User erstellen
-Um das Usererstellen auszuprobieren habe ich einen neue Sudo User erstellt. Dies ging ganz einfach mit dem Kommando `sudo adduser m300admin`. "m300admin" ist dabei der Username. Anschliessend wird man noch nach einem Passwort gefragt. Dabei habe ich wieder dasselbe verwendet wie immer.
+# Ubuntu Docker Vm
+## Vorbereitungen Docker Install
+Um Später mit dem eigentlichen Aufsetzen des Containers beginnen zu können müssen wir zwei kleine Vorbereitungen treffen. Als erstes die Docker pakete installieren,
 
-![NeuerSudoUser1](lb2_screenshots/usererstellen1.PNG)
+First, in order to ensure the downloads are valid, add the GPG key for the official Docker repository to your system:
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
 
-Anschliessend benötigt der neue erstellte User noch die Berechtigungen um die Rolle als SuperUser zu erfüllen. Dies gint mit dem Kommando `sudo usermod -aG sudo testuser`
+Add the Docker repository to APT sources:
+`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
 
-![NeuerSudoUser2](lb2_screenshots/usererstellen2.PNG)
+Next, update the package database with the Docker packages from the newly added repo:
+`sudo apt-get update`
 
-### Sudo User testen
+Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
+`apt-cache policy docker-ce`
 
-Um zu überprüfen, dass der neu erstellte User auch die richtigen Berechtigunen hat, habe ich mich auf ihm eingeloggt. Ganz einfach mit dem Befehl `su - testuser`. Und dann auf dem neuen Benutzer ein Befehl mit `sudo` ausgeführt. In diesem Fall habe ich die nummerierte Firewall-Regel Tabelle abgerufen. Weiter unten (im Bild) sieht man, dass der Befehl ohne `sudo` nicht funktioniert.
+Finally, install Docker:
+`sudo apt-get install -y docker-ce`
 
-![NeuerSudoUserTest](lb2_screenshots/usertesten.PNG)
+Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
+`sudo systemctl status docker`
+
+## Vorbereitungen Docker Compose Install
+Curl installieren
+`sudo apt-get install curl`
+
+Run this command to download the current stable release of Docker Compose:
+`sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+
+Apply executable permissions to the binary:
+`sudo chmod +x /usr/local/bin/docker-compose`.
 
 ## Firewall Regeln
 
 Ich habe mich für folgende Firewall Regeln entschieden. Diese hatten keinen besonderen Grund, einfach, dass ich beim installieren auf keine Probleme stosse.
 
-![FirewallRegeln](lb2_screenshots/ubuntufirewall.PNG)
-
-## SSH Key erstellen
-
-Mit folgendem Befehl habe ich einen SSH Key erstellt um den abgesicherten SSH Zugriff zu sichern.
-
-![SSHkeygen](lb2_screenshots/newsshkey.PNG)
-
-## MySQL, PhP und PhPMyAdmin Installation
-MySQL installieren.
-
-![SSHkeygen](lb2_screenshots/installmysql.PNG)
-
-PhP installieren.
-
-![SSHkeygen](lb2_screenshots/installphp.PNG)
-
-phpmyadmin installieren.
-
-![SSHkeygen](lb2_screenshots/installphpmyadmin.PNG)
-
-Damit die index.php Seite über dem Apache2-Index priorisiert wird, muss man das dir.conf File so anpassen, dass in der zweiten Zeile index.php vor index.html vorkommt.
-
-![SSHkeygen](lb2_screenshots/editdirconf2.PNG)
-
-Als letztes muss man noch die phpmyadmin mods installieren.
-
-![SSHkeygen](lb2_screenshots/enablephpmyadminmods.PNG)
+![FirewallRegeln](lb2_screenshots/ufwstatus.PNG)
 
 # Vagrant Box Release
 
