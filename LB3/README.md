@@ -192,27 +192,19 @@ Wenn alles korrekt läuft, sehen wir nun folgende Seite, wenn wir im Browser auf
 
 ## Sicherheitsmassnahmen
 ###  Überwachung
-Nachdem die Container aufgestartet wurden, wird alles was auf dem Server passiert live überwacht. 
+Software wie "Rancher" kann genutzt werden im die Container zu überwachen und Meldungen zu erzeugen.
 
-![Überwachung](lb3_screenshots/überwachung.PNG)
+### Sicherheitsaspekte & Sicherheitsmassnahme
 
-### Sicherheitsaspekte
-
-#### Kernel Exploits
+#### Massnahme 1: Kernel Exploits
 Um Kernel exploits zu verhindern wurden die zugewiesenen System Ressourcen festgelegt.
 
-#### Vergiftete Images
+#### Massnahme 2: Vergiftete Images
 Images werden nur von Docker Hub und Dockerverifizierte Sites geladen. Somit ist vereringert das Images Viren und weiteres beinhalten.
 
-#### Benachrichtigungen
+#### Massnahme 3: Benachrichtigungen
 Mit Überwachungssoftware können überlastungen und anderes unnatürliches verhalten verhindert werden.
 
-
-###  Sicherheitsmassnahme
-
-#### Massnahme 1
-#### Massnahme 2
-#### Massnahme 3
 
 ## Tests
 ### Testfall 1
