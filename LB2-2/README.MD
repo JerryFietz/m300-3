@@ -58,18 +58,6 @@ Das Vagrantfile dient der Konfiguration der VM, bevor man sie das erste Mal aufs
 
 ![Vagrantfile](lb2_screenshots/vagrantfile2.PNG)
 
-## Firewall Regeln
-
-Ich habe mich für folgende Firewall Regeln entschieden. Diese hatten keinen besonderen Grund, einfach, dass ich beim installieren auf keine Probleme stosse.
-
-![FirewallRegeln](lb2_screenshots/ubuntufirewall.PNG)
-
-## SSH Key erstellen
-
-Mit folgendem Befehl habe ich einen SSH Key erstellt um den abgesicherten SSH Zugriff zu sichern.
-
-![SSHkeygen](lb2_screenshots/newsshkey.PNG)
-
 # Docker VM vorbereitung Installation mit Vagrant
 ## Vagrantfile
 Das Vagrantfile dient der Konfiguration der VM, bevor man sie das erste Mal aufstartet.
