@@ -16,7 +16,6 @@
 4. Tests
     1. Testfall 1
     2. Testfall 2
-    3. Testfall 3
 5. Vergleich Vorwissen und Wissenszuwachs
    1. Vorwissen
    2. Wissenszuwachs
@@ -27,18 +26,18 @@
 Persönlicher Wissenstand zu LB2
 
 ## Linux
-Microservices sind ein Weg, Softwaresysteme so zu entwickeln und zu kombinieren, dass sie aus kleinen, unabhängigen Komponenten bestehen, die untereinander über das Netz interagieren. Das steht im Gegensatz zum klassischen, monolithischen Weg der Softwareentwicklung, bei dem es ein einzelnes, grosses Programm gibt.
+Als Linux oder GNU/Linux (siehe GNU/Linux-Namensstreit) bezeichnet man in der Regel freie, unixähnliche Mehrbenutzer-Betriebssysteme, die auf dem Linux-Kernel und wesentlich auf GNU-Software basieren. Die weite, auch kommerzielle Verbreitung wurde ab 1992 durch die Lizenzierung des Linux-Kernels unter der freien Lizenz GPL ermöglicht.
 
 ## Virtualisierung
-Entwickler können Software lokal bauen, die woanders genauso laufen wird – sei es ein Rack in der IT-Abteilung, der Laptop eines Anwenders oder ein Cluster in der Cloud.
-
-Administratoren können sich auf die Netzwerke, Ressourcen und die Uptime konzentrieren und müssen weniger Zeit mit dem Konfigurieren von Umgebungen und dem Kampf mit Systemabhängigkeiten verbringen.
+Virtualisierung bezeichnet in der Informatik die Nachbildung eines Hard- oder Software-Objekts durch ein ähnliches Objekt vom selben Typ mit Hilfe eines Abstraktions-Layers. Dadurch lassen sich virtuelle (d. h. nicht-physische) Geräte oder Dienste wie emulierte Hardware, Betriebssysteme, Datenspeicher oder Netzwerkressourcen erzeugen. Dies erlaubt es etwa, Computer-Ressourcen (insbesondere im Server-Bereich) transparent zusammenzufassen oder aufzuteilen, oder ein Betriebssystem innerhalb eines anderen auszuführen. 
 
 ## Vagrant
-Docker ist ein Programm, das für die Containerisierung genutzt wird. Wenn man das Docker paket herunterlädt bekommt man man einige Features mitinstalliert die man ebenfalls nutzen kann. Docker liefert ein ganzes Set an neuen Kommandos die man sowohl auf der Kommandozeile als auch in Skripts und im Dockerfile nutzen kann. Es hat sehr viele Ähnlichkeiten zu Vagrant. Der grosse unterschied ist nur, dass Vagrant zur Virtualisierung genutzt wird.
+Vagrant ist eine Ruby-Anwendung (open-source) zum Erstellen und Verwalten von virtuellen Maschinen (VMs).
+
+Die Ruby-Anwendung dient als Wrapper (engl. Verpackung, Umschlag) zwischen Virtualisierungssoftware wie VirtualBox, VMware und Hyper-V und Software-Konfiguration-Management-Anwendungen bzw. Systemkonfigurationswerkzeugen wie Chef, Saltstack und Puppet.
 
 ## Git
-Docker ist ein Programm, das für die Containerisierung genutzt wird. Wenn man das Docker paket herunterlädt bekommt man man einige Features mitinstalliert die man ebenfalls nutzen kann. Docker liefert ein ganzes Set an neuen Kommandos die man sowohl auf der Kommandozeile als auch in Skripts und im Dockerfile nutzen kann. Es hat sehr viele Ähnlichkeiten zu Vagrant. Der grosse unterschied ist nur, dass Vagrant zur Virtualisierung genutzt wird.
+Git ist ein verteiltes Versionskontrollsystem zum Nachverfolgen von Änderungen im Quellcode während der Softwareentwicklung. Es ist für die Koordinierung der Arbeit unter Programmierern konzipiert, es kann jedoch verwendet werden, um Änderungen in jedem Dateisatz nachzuverfolgen. Zu den Zielen gehören Geschwindigkeit, Datenintegrität und Unterstützung für verteilte, nicht lineare Workflows.
 
 
 -------------------
@@ -92,6 +91,24 @@ Run this command to download the current stable release of Docker Compose:
 Apply executable permissions to the binary:
 `sudo chmod +x /usr/local/bin/docker-compose`.
 
+##Making a Box
+
+We're now going to clean up disk space on the VM so when we package it into a new Vagrant box, it's as clean as possible. First, remove APT cache
+`sudo apt-get clean`
+
+Then, "zero out" the drive (this is for Ubuntu):
+`sudo dd if=/dev/zero of=/EMPTY bs=1M`
+`sudo rm -f /EMPTY`
+
+Lastly, let's clear the Bash History and exit the VM:
+`cat /dev/null > ~/.bash_history && history -c && exit`
+
+We're now going to repackage the server we just created into a new Vagrant Base Box. It's very easy with Vagrant:
+`vagrant package --output mynew.box`
+
+Add the Box into Your Vagrant Install
+`vagrant box add mynewbox mynew.box`
+
 ## Firewall Regeln
 
 Ich habe mich für folgende Firewall Regeln entschieden. Diese hatten keinen besonderen Grund, einfach, dass ich beim installieren auf keine Probleme stosse.
@@ -123,49 +140,40 @@ Mit Überwachungssoftware können überlastungen und anderes unnatürliches verh
 
 ## Tests
 ### Testfall 1
-__Titel:__ Start der Container
+__Titel:__ Start der VM
 
-__Datum:__ 3.5.19
+__Datum:__ 5.5.19
 
-__Beschreibung:__ Die Container werden gestartet.
+__Beschreibung:__ Die VM wird gestartet.
 
-__Erwartetes Ergebnis:__ Die Erwartung ist, dass verschiedene Container erstellt werden.
+__Erwartetes Ergebnis:__ Die Erwartung ist, dass die VM gestartet wird.
 
-__Eigenliches Ergebnis:__ Es sind zwei verschiedene Container erstellt worden. Einer mit dem Namen "docker_mariadb_1" und einer namens "docker_php-apache_1".
+__Eigenliches Ergebnis:__ Die VM startet.
+
+![FirewallRegeln](lb2_screenshots/test1start.PNG)
 
 ### Testfall 2
-__Titel:__ PHP Index Seite
+__Titel:__ Die .box kann generiert werden
 
-__Datum:__ 3.5.19
+__Datum:__ 5.5.19
 
-__Beschreibung:__ Verbindung auf Server via Browser.
+__Beschreibung:__ eine .box datei wird aus der VM gezogen.
 
-__Erwartetes Ergebnis:__ Erfolgreiches Erreichen der Seite des Servers. Es sollte die PHP Index Seite angezeigt werden.
+__Erwartetes Ergebnis:__ die .box wird generiert und ist brauchbar.
 
-__Eigenliches Ergebnis:__ Erfolgreich auf die Seite gekommen. Bei verändern der index.php Datei hat sich auch direkt die Seit im Browser verändert.
+__Eigenliches Ergebnis:__ die .box wird generiert.
 
-### Testfall 3
-__Titel:__ Überwachung
-
-__Datum:__ 3.5.19
-
-__Beschreibung:__ Verbindung auf Server via Browser und Überprüfung der Überwachung.
-
-__Erwartetes Ergebnis:__ Eintrag in der Konsole, dass um diese Zeit ein Benutzer diese Seite aufgerufen hat. Mit dem Browser Google Chrome auf Windows.
-
-__Eigenliches Ergebnis:__ Test war erfolgreich. Folgende Zeile wurde in der Konsole ausgegeben. `php-apache_1  | 212.203.120.1 - - [03/May/2019:11:02:45 +0000] "GET / HTTP/1.1" 200 23807 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"`.
+![FirewallRegeln](lb2_screenshots/test2box.PNG)
 
 # Vergleich Vorwissen und Wissenszuwachs & Reflexion
 ## Vorwissen
 Mein Vorwissen zum Containerisierung war minimal. Aus geschäftsevents kurz angehaucht. Jedoch spielte ich schon längeren damit zuhause mal damit zu spielen.
 
 ## Wissenszuwachs
-Ich konnte mit der Gitumgebung und den unterlagen gut mich an Containerisierung herantasten. Vagrant, Docker und vorallem das arbeiten mit Git ist mir sehr nützlich geworden. Das File managment mit git werde ich sicherlich weiterhin bei Projekten verwenden.
-
-In der LB3 konnte ich mein Wissen in Docker sehr erweitern, da dies ebenfalls Neuland für mich war.
+Ich kenne mich praktisch und auch theoretish nun mehr mit Containerisierung aus. mit Vagrant und Packer.
 
 ## Reflexion
-In der LB3 konnte ich sehr viel lernen. So lernte ich die Funktionsweise von Docker und Docker-Compose. Ebenfalls lernte ich, wie mein ein docker-compose.yml file erstellt und definiert. Die Verknüpfungen von einzelnen Containern sowie auch das Angeben von Volumes war mir völlig neu. 
+Ich hatte starke probleme mit der LB2. Probleme mit Git sowie viele hindernisse mit packer führten dazu, dass ich sehr lange nicht voran kam und meinen "interesse" verlor. Einen kompletten neuanfang half da weiter. 
 
 ### Reflexion Modul
 Ich habe sehr viel im Modul gelernt. Jedoch konnte ich aus persönlichen gründen nicht so viel Effizienz aufwenden um mich ganz mit dem Modul zu beschäftigen. Ich war in den Stunden unproduktiv und kam nicht voran. Vorallem hatte ich grosse Probleme mit Git und dem bereitgestellten netzwerk welche mich negativ beeinflussten.
