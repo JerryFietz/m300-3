@@ -4,7 +4,6 @@
    1. Microservice
    2. Containerisierung
    3. Docker
-      1. Dockerfile
 2. Multi Service Container Stack mit Docker-Compose
    1. Vorbereitungen Docker Install
    2. Vorbereitungen Docker Compose Install
@@ -32,18 +31,18 @@
 
 
 # Persönlicher Wissensstand
+Persönlicher Wissenstand zu LB3
 
 ## Microservicess
-JJAjeifhkljsehfkajsehfjklashdflkjahsdklfjhasdkjfhakjl
+Microservices sind ein Weg, Softwaresysteme so zu entwickeln und zu kombinieren, dass sie aus kleinen, unabhängigen Komponenten bestehen, die untereinander über das Netz interagieren. Das steht im Gegensatz zum klassischen, monolithischen Weg der Softwareentwicklung, bei dem es ein einzelnes, grosses Programm gibt.
 
 ## Containerisierung
-JJAjeifhkljsehfkajsehfjklashdflkjahsdklfjhasdkjfhakjl
+Entwickler können Software lokal bauen, die woanders genauso laufen wird – sei es ein Rack in der IT-Abteilung, der Laptop eines Anwenders oder ein Cluster in der Cloud.
+
+Administratoren können sich auf die Netzwerke, Ressourcen und die Uptime konzentrieren und müssen weniger Zeit mit dem Konfigurieren von Umgebungen und dem Kampf mit Systemabhängigkeiten verbringen.
 
 ## Docker
 Docker ist ein Programm, das für die Containerisierung genutzt wird. Wenn man das Docker paket herunterlädt bekommt man man einige Features mitinstalliert die man ebenfalls nutzen kann. Docker liefert ein ganzes Set an neuen Kommandos die man sowohl auf der Kommandozeile als auch in Skripts und im Dockerfile nutzen kann. Es hat sehr viele Ähnlichkeiten zu Vagrant. Der grosse unterschied ist nur, dass Vagrant zur Virtualisierung genutzt wird.
-
-### Dockerfile
-Das Dockerfile ist wie das Vagrantfile, eine Datei in der alle Konfigurationen die ein Container vorab haben soll wenn er aufgesetzt wird. Dies ermöglicht ein schnelles, felxibles wiederaufabauen von Conainern.
 
 # Multi Service Container Stack mit Docker-Compose
 ## Vorbereitungen Docker Install
@@ -93,6 +92,37 @@ Im nächsten Abschnitt beschreiben wir unseren Datenbank container. Dabei wird z
 
 Und zum Schluss müssen noch ein sogenanntes "named volume" erstellen. Dies tun wir mit der Option `volumes:` ganz am Ende der Datei. 
 
+## Verschiedene Services
+Hier sind die verschiedenen Services aufgelistet welche nun in Container laufen.
+
+### PiHole
+Der Pi Hole Service ist nicht funktionsfähig
+
+![docker-compose.yml](lb3_screenshots/pihole.PNG)
+
+### PHPmyAdmin
+Der PHPmyAdmin service ist funktionstüchtig
+
+![docker-compose.yml](lb3_screenshots/phpmyadmin.PNG)
+
+### mySQL
+mySQL Service ist auch betriebsbereit
+
+
+![docker-compose.yml](lb3_screenshots/mysqlservice.PNG)
+
+### Apache Server
+Webserver/Apacheserver ist betriebsbereit
+
+
+![docker-compose.yml](lb3_screenshots/dockercomposeyaml.PNG)
+
+### cAdvisor
+cAdvisor ist auch aufrufbar
+
+![docker-compose.yml](lb3_screenshots/cAdvisor.PNG)
+
+
 ## Der letzte Schritt
 Nun, da wir alle Konfigurationen gemacht haben, können wir die Container starten. `docker-compose up`. Dabei darauf achten, dass wir im gleichen Verzeichnis sind, wie die docker-compose.yml Datei.
 
@@ -105,6 +135,18 @@ Wenn alles korrekt läuft, sehen wir nun folgende Seite, wenn wir im Browser auf
 Nachdem die Container aufgestartet wurden, wird alles was auf dem Server passiert live überwacht. 
 
 ![Überwachung](lb3_screenshots/überwachung.PNG)
+
+### Sicherheitsaspekte
+
+#### Kernel Exploits
+Um Kernel exploits zu verhindern wurden die zugewiesenen System Ressourcen festgelegt.
+
+#### Vergiftete Images
+Images werden nur von Docker Hub und Dockerverifizierte Sites geladen. Somit ist vereringert das Images Viren und weiteres beinhalten.
+
+#### Benachrichtigungen
+Mit Überwachungssoftware können überlastungen und anderes unnatürliches verhalten verhindert werden.
+
 
 ###  Sicherheitsmassnahme
 
