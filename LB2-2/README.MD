@@ -56,7 +56,7 @@ free -m| #Freier Arbeitsspeicher
 ## Vagrantfile
 Das Vagrantfile dient der Konfiguration der VM, bevor man sie das erste Mal aufstartet.
 
-![Vagrantfile](lb2_screenshots/vagrantfile2.PNG)
+![Vagrantfile](lb2_screenshots/vagrantfile2)
 
 # Docker VM vorbereitung Installation mit Vagrant
 ## Vagrantfile
