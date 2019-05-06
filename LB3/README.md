@@ -1,13 +1,41 @@
-# Docker
+#Persönlicher Wissensstand
+
+##Microservicess
+JJAjeifhkljsehfkajsehfjklashdflkjahsdklfjhasdkjfhakjl
+
+##Containerisierung
+JJAjeifhkljsehfkajsehfjklashdflkjahsdklfjhasdkjfhakjl
+
+## Docker
 Docker ist ein Programm, das für die Containerisierung genutzt wird. Wenn man das Docker paket herunterlädt bekommt man man einige Features mitinstalliert die man ebenfalls nutzen kann. Docker liefert ein ganzes Set an neuen Kommandos die man sowohl auf der Kommandozeile als auch in Skripts und im Dockerfile nutzen kann. Es hat sehr viele Ähnlichkeiten zu Vagrant. Der grosse unterschied ist nur, dass Vagrant zur Virtualisierung genutzt wird.
 
-## Dockerfile
+### Dockerfile
 Das Dockerfile ist wie das Vagrantfile, eine Datei in der alle Konfigurationen die ein Container vorab haben soll wenn er aufgesetzt wird. Dies ermöglicht ein schnelles, felxibles wiederaufabauen von Conainern.
 
-# LAMP Stack mit Docker-Compose
-## Vorbereitungen
+# Multi Service Container Stack mit Docker-Compose
+## Vorbereitungen Docker Install
 Um Später mit dem eigentlichen Aufsetzen des Containers beginnen zu können müssen wir zwei kleine Vorbereitungen treffen. Als erstes die Docker pakete installieren,
-`apt-get install docker docker-compose`.
+
+First, in order to ensure the downloads are valid, add the GPG key for the official Docker repository to your system:
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+Add the Docker repository to APT sources:
+`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
+Next, update the package database with the Docker packages from the newly added repo:
+`sudo apt-get update`
+Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
+`apt-cache policy docker-ce`
+Finally, install Docker:
+`sudo apt-get install -y docker-ce`
+Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
+`sudo systemctl status docker`
+
+## Vorbereitungen Docker Compose Install
+Curl installieren
+`sudo apt-get install curl`
+Run this command to download the current stable release of Docker Compose:
+`sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+Apply executable permissions to the binary:
+`sudo chmod +x /usr/local/bin/docker-compose`.
 
 Anschliessend müssen wir noch eins, zwei Verzeichnisse erstellen in denen wir unsere Konfigurationen speichern. Ich habe mich für das home-directory des roots entschieden. Es kommt aber nicht wirklich darauf an wo man dies tut.
 `mkdir docker`. Nun, da wir einen LAMP Stack aufbauen brauchen wir noch ein Verzeichnis in dem wir die Startseite von unserem Apache speichern. Das habe ich im neuen /docker Verzeichnis gemacht. `mkdir documentroot`. Darin erstellen wir gleich eine index.php Datei mit dem Inhalt `<?php phpinfo(); ?>` um die Standardseite von PHP anzeigen zu lassen wenn wir im Browser auf unseren Container gehen. Danach brauchen wir noch eine .yml Datei in dem wir die docker-compose Konfigurationen speichern. Also direkt im /docker Verzeichnis `touch docker-compose.yml`. Diese Datei können wir nun mit unserem lieblings Editor bearbeiten.
